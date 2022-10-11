@@ -31,6 +31,9 @@ class _RegisterFormPageState extends State<RegisterFormPage> {
   final List<String> _countries = ['Russia', 'Ukraine', 'Germany', 'France'];
   String _selectedCountry = 'Russia';
 
+  final List<String> _gender = ['Male', 'Female'];
+  String _selectedGender = 'Male';
+
   final _idFocus = FocusNode();
   final _nameFocus = FocusNode();
   final _phoneFocus = FocusNode();
@@ -213,7 +216,29 @@ class _RegisterFormPageState extends State<RegisterFormPage> {
               },
             ), // country
             const SizedBox(height: 20),
-
+            DropdownButtonFormField(
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  icon: Icon(Icons.account_circle_outlined),
+                  labelText: 'Gender?'),
+              items: _gender.map((gender) {
+                return DropdownMenuItem(
+                  value: gender,
+                  child: Text(gender),
+                );
+              }).toList(),
+              onChanged: (gender) {
+                setState(() {
+                  _selectedGender = gender as String;
+                  newUser.gender = gender;
+                });
+              },
+              value: _selectedGender,
+              validator: (val) {
+                return val == null ? 'Please select a gender' : null;
+              },
+            ), // country
+            const SizedBox(height: 20),
             TextFormField(
               controller: _storyController,
               decoration: const InputDecoration(

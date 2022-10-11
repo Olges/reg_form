@@ -49,6 +49,7 @@ class UserInfoPage extends StatelessWidget {
                 Icons.phone,
                 color: Colors.black,
               ),
+              trailing: Text(userInfo.gender),
             ),
             ListTile(
               title: Text(
