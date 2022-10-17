@@ -14,7 +14,6 @@ class RegisterFormPage extends StatefulWidget {
 }
 
 class _RegisterFormPageState extends State<RegisterFormPage> {
-
   bool _hidePass = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -43,6 +42,7 @@ class _RegisterFormPageState extends State<RegisterFormPage> {
 
   @override
   void dispose() {
+    _idController.dispose();
     _nameController.dispose();
     _phoneController.dispose();
     _emailController.dispose();
@@ -78,16 +78,16 @@ class _RegisterFormPageState extends State<RegisterFormPage> {
               focusNode: _idFocus,
               autofocus: true,
               onFieldSubmitted: (_) {
-                _fieldFocusChange(context, _nameFocus, _phoneFocus);
+                _fieldFocusChange(context, _idFocus, _nameFocus);
               },
-              controller: _nameController,
+              controller: _idController,
               decoration: InputDecoration(
                 labelText: 'ID *',
                 hintText: 'What ID do you want to have?',
                 prefixIcon: const Icon(Icons.account_balance_outlined),
                 suffixIcon: GestureDetector(
                   onTap: () {
-                    _nameController.clear();
+                    _idController.clear();
                   },
                   child: const Icon(
                     Icons.delete_outline,
